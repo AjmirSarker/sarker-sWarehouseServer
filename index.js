@@ -13,7 +13,23 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1
 });
+async function run(){
+try{
 
+  await client.connect();
+    const productCollection = client.db('warehouse').collection('products');
+    app.get('/product',async(req,res)=>{
+      const query = {}
+      const cursor = productCollection.find(query);
+      const items = await cursor.toArray()
+      res.send(items)
+  })
+}
+finally{
+
+}
+}
+run().catch(console.dir);
 app.get('/', (req, res) => {
   res.send('Running Server');
 });
