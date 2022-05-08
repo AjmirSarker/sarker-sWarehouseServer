@@ -73,7 +73,7 @@ async function run() {
       const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: '1d'
       });
-      res.send(accessToken)
+      res.send(accessToken);
     });
   } finally {
   }
