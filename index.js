@@ -1,6 +1,7 @@
 const express = require('express');
 const port = process.env.PORT || 5000;
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const app = express();
 app.use(cors());
@@ -48,13 +49,32 @@ async function run() {
       const filter = { _id: ObjectId(id) };
       const options = { upsert: true };
       const updateDoc = {
-          $set: {
-              quantity: updatedProduct.quantity
-          },
+        $set: {
+          quantity: updatedProduct.quantity
+        }
       };
-      const result = await productCollection.updateOne(filter, updateDoc, options);
+      const result = await productCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
       res.send(result);
-  })
+    });
+    app.get('/Additem', async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const cursor = productCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    //auth
+    app.get('/login', async (req, res) => {
+      const user = req.body;
+      const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '1d'
+      });
+      res.send({ accessToken });
+    });
   } finally {
   }
 }
