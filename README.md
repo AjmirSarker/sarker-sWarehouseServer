@@ -9,7 +9,6 @@
  <li> Update : PUt for update</li>
  <li>Load : get for load datas</li>
  <li> Delete : Delete data </li>
- <li> </li>
  <li> Post : add new item</li>
  
  <h3>StackOverFlow</h3>
