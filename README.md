@@ -1,7 +1,7 @@
 <h1>Sarker's Warehouse</h1>
 <h5>Render site link.Can use/products,/Additem </h5>
 
- [https://sarkerswarehouse.herokuapp.com](https://sarkerwarehouse.onrender.com/)
+https://sarkerwarehouse.onrender.com/
 
  <p>This is my server site.This is working good.</p>
 
